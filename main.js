@@ -2,10 +2,12 @@
 import { move } from "./move.js";
 import { moveWithKey } from "./moveWithKey.js";
 import { display } from "./display.js";
+import { tuto } from "./display.js";
 import { nbrBrick } from "./bricker.js";
 let canvas = document.getElementById("canvas")
 let ctx = canvas.getContext("2d");
 let rafId;
+let mainTimeoutId;
 let game = {
 	width: canvas.width,
 	height: canvas.height,
@@ -32,15 +34,19 @@ let ball = {
 }
 ball.sens = { x: 0, y: -1 }
 if (nbrBrick > 12) {
-	ball.vitesse = ball.vitesse +2;			 
+	ball.vitesse = ball.vitesse + 2;
 }
-export {paddle};
-export {game};
-export {rafId};
-export {ctx}
-export {ball}
+export { paddle };
+export { game };
+export { rafId };
+export { ctx }
+export { ball }
 document.addEventListener('DOMContentLoaded', function () {
-	moveWithKey();
-	display();
-	move();
+	tuto();
+	// mainTimeoutId = setTimeout(() => {
+	// 	display();
+	// 	moveWithKey();
+	// 	move();
+	// }, 12000);
 });
+export {mainTimeoutId};

@@ -24,10 +24,8 @@ for (let i = 0; i < line; i++) {
     }
 }
 function resetScoreAndnbrBrick() {
-    refresh.addEventListener("click", function(){
         score = 0;
         nbrBrick = line * column
-    });
 }
     function bricker() {
         for (let i = 0; i < line; i++) {

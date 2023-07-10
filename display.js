@@ -8,7 +8,10 @@ import { score } from "./bricker.js";
 import { live } from "./move.js";
 import { nbrBrick } from "./bricker.js";
 import { init } from "./init.js";
+import { moveWithKey } from "./moveWithKey.js";
+import { move } from "./move.js";
 let image = document.getElementById('img')
+let timeoutId;
 function display() {
     ctx.clearRect(0, 0, game.width, game.height);
     ctx.fillStyle = game.color;
@@ -40,3 +43,33 @@ function display() {
     bricker();
 }
 export {display}
+function tuto() {
+    display();
+	ctx.fillStyle = "white";
+	ctx.font = " bold 30px Verdana";
+	ctx.fillText("veuillez retourner votre écran", (game.width - ctx.measureText("veuillez retourner votre écran").width) / 2, 295);
+	timeoutId = setTimeout(() => {
+		display();
+		ctx.fillStyle = "white";
+		ctx.font = " bold 30px Verdana";
+		ctx.fillText("appuyez le côté droite de l'écran", (game.width - ctx.measureText("appuyez le côté droite de l'écran").width) / 2, 295);
+		ctx.fillText("pour bouger a droite", (game.width - ctx.measureText("pour bouger a droite").width) / 2, 345);
+	}, 3000);
+	timeoutId = setTimeout(() => {
+		display();
+		ctx.fillStyle = "white";
+		ctx.font = " bold 30px Verdana";
+		ctx.fillText("appuyez au milieu pour mettre", (game.width - ctx.measureText("appuyez au milieu pour mettre").width) / 2, 295);
+		ctx.fillText("sur pause et sur play", (game.width - ctx.measureText("sur pause et sur play").width) / 2, 345);
+	}, 6000);
+	timeoutId = setTimeout(() => {
+		display();
+		ctx.fillStyle = "white";
+		ctx.font = " bold 30px Verdana";
+		ctx.fillText("appuyez le côté gauche de l'écran", (game.width - ctx.measureText("appuyez le côté gauche de l'écran").width) / 2, 295);
+		ctx.fillText("pour bouger a gauche", (game.width - ctx.measureText("pour bouger a gauche").width) / 2, 345);
+	}, 9000);
+    
+}
+export {tuto}
+export{timeoutId}

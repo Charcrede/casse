@@ -10,13 +10,17 @@ import { live } from "./move.js";
 import { brick } from "./bricker.js";
 import { line } from "./bricker.js";
 import { column } from "./bricker.js";
+import { tuto } from "./display.js";
+import { timeoutId } from "./display.js";
+import { mainTimeoutId } from "./main.js";
 import { resetScoreAndnbrBrick } from "./bricker.js";
 let click = 0;
 document.addEventListener("DOMContentLoaded", function(){
     let left = document.getElementById("left");
     let right = document.getElementById("right");
     let refresh = document.getElementById("refresh");
-    let pauseAndPlay = document.querySelector("canvas");
+    let pauseAndPlay = document.querySelector("#pauseAndPlay");
+    let parent = document.querySelector(".parent");
     left.addEventListener("click", function(){
         if (paddle.x > 0) {
             paddle.x -= paddle.vitesse;
@@ -40,25 +44,32 @@ document.addEventListener("DOMContentLoaded", function(){
                         cancelAnimationFrame(rafId);
                     }
                 }
-    });
-    refresh.addEventListener("click", function(){
-        for (let i = 0; i < line; i++) {
-            brick[i] = [];
-            for (let u = 0; u < column; u++) {
-                brick[i][u] = {
-                    x: 0,
-                    y: 0,
-                    color: "antiquewhite",
-                    state: "alive"
+                else{
+                    for (let i = 0; i < line; i++) {
+                                brick[i] = [];
+                                for (let u = 0; u < column; u++) {
+                                    brick[i][u] = {
+                                        x: 0,
+                                        y: 0,
+                                        color: "antiquewhite",
+                                        state: "alive"
+                                    }
+                                }
+                            }
+                            init();
+                            display();
+                            resetLive();
+                            resetScoreAndnbrBrick();
+                            game.gameOver = false;
                 }
-            }
-        }
-        init();
-        display();
-        resetLive();
-        resetScoreAndnbrBrick();
-        game.gameOver = false;
     });
+    parent.addEventListener("dblclick", function(){
+        clearTimeout(timeoutId);
+        clearTimeout(mainTimeoutId);
+    });
+    // refresh.addEventListener("click", function(){
+    //     
+    // });
 });
 
     function moveWithKey() {
